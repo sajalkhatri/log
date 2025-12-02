@@ -1,204 +1,115 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sajal — personal</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sajal — personal</title>
+<meta name="description" content="Sajal — learning, building, improving.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f11;
+    --panel:#0f1416;
+    --muted:#9aa4b2;
+    --blue:#4da3ff;
+    --glass: rgba(255,255,255,0.02);
+    --radius:14px;
+    --gap:18px;
+    --card-border: rgba(255,255,255,0.04);
+  }
 
-  <style>
-    :root{
-      --bg:#0d0f12;
-      --muted:#9aa4b2;
-      --blue:#4da3ff;
-      --card:rgba(255,255,255,0.02);
-    }
+  /* page reset */
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--blue);background:var(--bg);-webkit-font-smoothing:antialiased;}
+  main{display:flex;justify-content:center;padding:56px 20px 80px;}
+  .container{width:min(820px,96%);}
 
-    html,body{
-      margin:0;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--blue);
-      padding:48px 20px;
-      display:flex;
-      justify-content:center;
-      -webkit-font-smoothing:antialiased;
-    }
+  /* header / hero */
+  .hero{display:flex;align-items:center;gap:20px;}
+  .avatar{
+    width:120px;height:120px;border-radius:12px;overflow:hidden;
+    background:linear-gradient(180deg,#0a0c0d,#0f1315);
+    border:1px solid var(--card-border);
+    box-shadow:0 14px 40px rgba(0,0,0,0.65);
+    flex:0 0 120px;
+  }
+  .avatar img{display:block;width:100%;height:100%;object-fit:cover;}
 
-    .wrap{
-      width:min(820px,96%);
-    }
+  .title{
+    display:flex;flex-direction:column;gap:8px;
+  }
+  h1{margin:0;font-size:36px;line-height:1;color:var(--blue);font-weight:600;}
+  .subtitle{
+    color:var(--muted);font-size:15px;max-width:56ch;
+    overflow:hidden;white-space:nowrap;border-right:2px solid var(--blue);
+    width:0;animation:typing 2.4s steps(40,end) forwards,blink .8s infinite;
+  }
+  @keyframes typing{from{width:0}to{width:320px}}
+  @keyframes blink{0%{border-color:transparent}50%{border-color:var(--blue)}100%{border-color:transparent}}
 
-    .hero{
-      display:flex;
-      gap:20px;
-      align-items:center;
-    }
+  .lead{margin-top:6px;color:var(--muted);font-size:14px;max-width:60ch;line-height:1.5;}
+  .links{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
+  .link{background:var(--glass);border:1px solid var(--card-border);padding:8px 12px;border-radius:999px;color:var(--blue);text-decoration:none;font-size:14px}
 
-    .avatar{
-      width:110px;
-      height:110px;
-      border-radius:12px;
-      overflow:hidden;
-      background:#111;
-      border:1px solid rgba(255,255,255,0.05);
-      box-shadow:0 8px 24px rgba(0,0,0,0.5);
-    }
+  /* status box */
+  blockquote{
+    margin:28px 0;padding:14px 18px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.012));
+    border-left:3px solid rgba(77,163,255,0.28);color:var(--muted);border-radius:10px;width:100%;
+  }
 
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
+  /* two-column lists */
+  .section{display:flex;gap:18px;align-items:flex-start;margin-top:14px;flex-wrap:wrap;}
+  .panel{background:var(--panel);border:1px solid var(--card-border);padding:16px;border-radius:12px;flex:1;min-width:220px}
+  .panel h3{margin:0 0 10px 0;color:var(--blue);font-size:15px}
+  ul{margin:0;padding:0;list-style:none}
+  li{padding:10px 6px;border-bottom:1px dashed rgba(255,255,255,0.03);color:#e6eef6;font-size:14px}
 
-    h1{
-      margin:0;
-      font-size:34px;
-      font-weight:600;
-    }
+  footer{text-align:center;margin-top:26px;color:var(--muted);font-size:13px}
 
-    /* Typing animation */
-    .subtitle{
-      font-size:15px;
-      color:var(--muted);
-      margin-top:6px;
-      overflow:hidden;
-      white-space:nowrap;
-      border-right:2px solid var(--blue);
-      width:0;
-      animation:typing 2.4s steps(40,end) forwards, blink .8s infinite;
-    }
-
-    @keyframes typing{
-      from{width:0}
-      to{width:260px}
-    }
-
-    @keyframes blink{
-      0%{border-color:transparent}
-      50%{border-color:var(--blue)}
-      100%{border-color:transparent}
-    }
-
-    .lead{
-      margin-top:16px;
-      font-size:14px;
-      color:var(--muted);
-      max-width:60ch;
-      line-height:1.5;
-    }
-
-    .links{
-      margin-top:16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .link{
-      text-decoration:none;
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.05);
-      color:var(--blue);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:14px;
-    }
-
-    blockquote{
-      margin:26px 0;
-      padding:14px;
-      border-left:3px solid rgba(77,163,255,0.4);
-      background:var(--card);
-      color:var(--muted);
-      border-radius:6px;
-    }
-
-    .section{
-      margin-top:20px;
-      display:flex;
-      gap:16px;
-    }
-
-    .list{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:10px;
-      padding:14px;
-      flex:1;
-    }
-
-    .list h3{
-      margin:0 0 10px;
-      font-size:16px;
-      color:var(--blue);
-    }
-
-    .list ul{
-      margin:0;
-      padding:0;
-      list-style:none;
-    }
-
-    .list li{
-      padding:8px 4px;
-      border-bottom:1px dashed rgba(255,255,255,0.04);
-      color:#e8eef6;
-      font-size:14px;
-    }
-
-    footer{
-      margin-top:28px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-    }
-  </style>
+  /* responsive */
+  @media (max-width:720px){
+    .hero{flex-direction:row;align-items:center}
+    h1{font-size:28px}
+    .avatar{width:92px;height:92px;flex:0 0 92px}
+  }
+</style>
 </head>
-
 <body>
-  <main class="wrap">
-
-    <!-- Hero Section -->
-    <header class="hero">
-      <div class="avatar">
-        <!-- Replace this URL with your own image -->
-        <img src="https://i.imgur.com/3u1wq5K.jpeg" alt="Sajal">
+<main>
+  <div class="container" role="main">
+    <header class="hero" aria-label="hero">
+      <div class="avatar" aria-hidden="true">
+        <!-- Replace this URL with your own image file or path in the repo -->
+        <img src="https://i.imgur.com/Qr71crq.jpeg" alt="Sajal">
       </div>
 
-      <div>
+      <div class="title">
         <h1>Sajal</h1>
         <div class="subtitle">learning, building, improving</div>
-        <div class="lead">
-          documenting my journey and interests. minimal, static, clean.
-        </div>
+        <div class="lead">documenting my journey and interests. minimal, static, and fast. replace links and avatar with your own.</div>
 
-        <div class="links">
-          <a class="link" href="#">instagram</a>
-          <a class="link" href="#">github</a>
-          <a class="link" href="#">projects</a>
-          <a class="link" href="#">blog</a>
-          <a class="link" href="#">notes</a>
-        </div>
+        <nav class="links" aria-label="links">
+          <a class="link" href="https://instagram.com" target="_blank" rel="noreferrer">instagram</a>
+          <a class="link" href="https://github.com" target="_blank" rel="noreferrer">github</a>
+          <a class="link" href="#projects">projects</a>
+          <a class="link" href="#blog">blog</a>
+          <a class="link" href="#notes">notes</a>
+        </nav>
       </div>
     </header>
 
-    <!-- Status -->
     <blockquote>current status: working on myself</blockquote>
 
-    <!-- Interests & Learning Section -->
-    <section class="section">
-      <div class="list">
-        <h3>interests</h3>
+    <section class="section" aria-label="content">
+      <div class="panel" id="projects" role="region" aria-labelledby="projects-label">
+        <h3 id="projects-label">projects</h3>
         <ul>
-          <li>machine learning</li>
-          <li>system design</li>
-          <li>aesthetics</li>
-          <li>psychology</li>
+          <li><strong>Example Project</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">short description · stack</div></li>
+          <li><strong>Another Project</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">short description · repo</div></li>
         </ul>
       </div>
 
-      <div class="list" style="max-width:220px;">
-        <h3>learning list</h3>
+      <div class="panel" id="notes" role="region" aria-labelledby="notes-label">
+        <h3 id="notes-label">notes / learning list</h3>
         <ul>
           <li>python</li>
           <li>ml basics</li>
@@ -209,9 +120,9 @@
     </section>
 
     <footer>
-      static site — save as <code>index.html</code> and publish with GitHub Pages.
+      static site — save as <code>index.html</code> and publish with GitHub Pages. If you want exact font files or images copied from the reference site provide them and I will integrate.
     </footer>
-
-  </main>
+  </div>
+</main>
 </body>
 </html>
