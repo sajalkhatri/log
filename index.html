@@ -61,7 +61,7 @@ h1{margin:0;font-size:30px;font-weight:600;color:var(--primary-soft)}
 .pill{
   padding:7px 10px;border-radius:999px;background:#240606;
   border:1px solid var(--border);font-size:13px;color:var(--muted);
-  text-decoration:none;transition:0.2s;
+  text-decoration:none;transition:0.2s;cursor:pointer;
 }
 .pill:hover{color:var(--primary-soft);border-color:var(--primary-soft)}
 
@@ -114,26 +114,33 @@ button.action:hover{border-color:var(--primary-soft);background:#2b0808}
 }
 .entry button:hover{color:#ff7d7d;border-color:#ff7d7d}
 
+/* Footer */
 footer{text-align:center;margin-top:26px;color:var(--muted);font-size:12px}
-
 </style>
 </head>
 
 <body>
 <div class="overlay"><main>
 
+<!-- background music -->
+<audio id="bgMusic" src="music.mp3" loop></audio>
+
 <header class="hero">
   <div class="mono">SJ</div>
   <div>
     <h1>SAJAL KHATRI</h1>
     <div class="age">21</div>
-    <div class="subtitle"></div>
-    <div class="lead"> I study law, and try to be better at ML and data science.</div>
+    <div class="subtitle">learning, building, improving</div>
+    <div class="lead">i study law and try to be better at ML and data science.</div>
 
     <div class="links">
-      <a class="pill" href="https://instagram.com/sajalkhatri" target="_blank">instagram</a>
+      <a class="pill" href="https://instagram.com/sajalkhattri" target="_blank">instagram</a>
       <a class="pill" href="https://github.com/sajalkhatri" target="_blank">github</a>
       <a class="pill" href="#" onclick="openTab('contact')">contact</a>
+
+      <!-- Music Controls -->
+      <button class="pill" id="playBtn">play music</button>
+      <button class="pill" id="pauseBtn">pause</button>
     </div>
   </div>
 </header>
@@ -145,33 +152,31 @@ footer{text-align:center;margin-top:26px;color:var(--muted);font-size:12px}
   <button class="tab-btn" data-tab="contact">contact</button>
 </div>
 
-<!-- Overview -->
+<!-- overview -->
 <section id="tab-overview" class="section">
   <div class="box">
     <h3>interests</h3>
     <ul>
-      <li>Law</li>
-      <li>Machine learning</li>
-      <li>Data science</li>
-      <li>Music</li>
-      <li>Football</li>
+      <li>law</li>
+      <li>machine learning</li>
+      <li>data science</li>
+      <li>finance</li>
     </ul>
   </div>
-
   <div class="box">
-    <h3>Learning focus</h3>
+    <h3>learning focus</h3>
     <ul>
-      <li>Statistics & Linear algebra</li>
-      <li>Law</li>
-      <li>Project building</li>
+      <li>statistics & linear algebra</li>
+      <li>law</li>
+      <li>project building</li>
     </ul>
   </div>
 </section>
 
-<!-- Learning -->
+<!-- learning tracker -->
 <section id="tab-learning" class="section hidden">
   <div class="box">
-    <h3>Learning tracker</h3>
+    <h3>learning tracker</h3>
     <label>What did you learn?</label>
     <input id="learnTitle" placeholder="e.g. hypothesis testing">
     <label>Notes</label>
@@ -182,40 +187,38 @@ footer{text-align:center;margin-top:26px;color:var(--muted);font-size:12px}
       <option value="2">medium (1–3 hrs)</option>
       <option value="1">low (&lt;1hr)</option>
     </select>
-
     <button class="action" onclick="addEntry()">Add</button>
-    <button class="action" onclick="clearEntries()">Clear All</button>
-
+    <button class="action" onclick="clearEntries()">Clear</button>
     <div id="entries" class="entries"></div>
   </div>
 </section>
 
-<!-- Projects -->
+<!-- projects -->
 <section id="tab-projects" class="section hidden">
   <div class="box">
     <h3>projects</h3>
     <ul>
       <li><strong>Case Research Summaries</strong><br><span style="font-size:12px;color:var(--muted)">law + writing</span></li>
-      <li><strong>ML Model Practice</strong><br><span style="font-size:12px;color:var(--muted)">notebooks & datasets</span></li>
-      <li><strong>  </strong><br><span style="font-size:12px;color:var(--muted)">   </span></li>
+      <li><strong>ML Model Practice</strong><br><span style="font-size:12px;color:var(--muted)">notebooks</span></li>
+      <li><strong>Finance Notes</strong><br><span style="font-size:12px;color:var(--muted)">market concepts</span></li>
     </ul>
   </div>
 </section>
 
-<!-- Contact -->
+<!-- contact -->
 <section id="tab-contact" class="section hidden">
   <div class="box">
     <h3>contact me</h3>
-    <p style="font-size:13px;">reach me at:</p>
-    <ul style="list-style:none;padding:0;font-size:13px;">
-      <li><a href="https://instagram.com/sajalkhatri" target="_blank">instagram dm</a></li>
+    <p>reach me via:</p>
+    <ul style="list-style:none;padding:0">
+      <li><a href="https://instagram.com/sajalkhattri" target="_blank">instagram dm</a></li>
       <li><a href="https://www.linkedin.com/in/sajal-khatri-524a1821b/" target="_blank">linkedin</a></li>
     </ul>
-    <p style="font-size:12px;color:var(--muted);margin-top:10px;">i respond fastest on instagram.</p>
+    <p style="font-size:12px;color:var(--muted)">i respond fastest on instagram.</p>
   </div>
 </section>
 
-<footer> Reach me <code> @ig </code>  <code> </code> </footer>
+<footer>Save as <code>index.html</code>, keep <code>bg.jpg</code> & <code>music.mp3</code> with it.</footer>
 
 <script>
 // Tabs
@@ -229,26 +232,36 @@ document.querySelectorAll(".tab-btn").forEach(btn=>{
 });
 function openTab(tab){document.querySelector(`[data-tab=${tab}]`).click()}
 
-// Learning tracker
+// Tracker
 let entries=JSON.parse(localStorage.getItem("sajalTrack")||"[]");
+const el=document.getElementById("entries");
 function save(){localStorage.setItem("sajalTrack",JSON.stringify(entries));render()}
 function addEntry(){
-  let t=learnTitle.value.trim();if(!t) return;
+  let t=learnTitle.value.trim(); 
+  if(!t) return;
   entries.unshift({t,n:learnNotes.value,e:learnEffort.value,date:new Date().toISOString().slice(0,10)});
-  learnTitle.value="";learnNotes.value="";save();
+  learnTitle.value=""; learnNotes.value="";
+  save();
 }
+function clearEntries(){ if(confirm("Clear all?")){entries=[];save()} }
 function delEntry(i){entries.splice(i,1);save()}
-function clearEntries(){if(confirm("Clear all?")){entries=[];save()}}
 function render(){
-  entriesDiv.innerHTML="";entries.forEach((x,i)=>{
-    entriesDiv.innerHTML+=`<div class="entry">
-      <div class="entry-title">${x.t}</div>
-      <div class="entry-meta">${x.date} • effort:${x.e}</div>
-      ${x.n?`<div class="entry-notes">${x.n}</div>`:""}
-      <button onclick="delEntry(${i})">delete</button>
-    </div>`})
+  el.innerHTML="";
+  entries.forEach((x,i)=>{
+    el.innerHTML+=`<div class="entry">
+    <div class="entry-title">${x.t}</div>
+    <div class="entry-meta">${x.date} • effort:${x.e}</div>
+    ${x.n?`<div class="entry-notes">${x.n}</div>`:""}
+    <button onclick="delEntry(${i})">delete</button>
+    </div>`;
+  });
 }
-const entriesDiv=document.getElementById("entries");render();
+render();
+
+// Music Play/Pause
+const music=document.getElementById("bgMusic");
+document.getElementById("playBtn").onclick=()=>music.play();
+document.getElementById("pauseBtn").onclick=()=>music.pause();
 </script>
 </main></div>
 </body>
