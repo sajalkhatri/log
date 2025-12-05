@@ -1,268 +1,155 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SAJAL KHATRI</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#000;
-  --primary:#f44b4b;
-  --primary-soft:#ff6b6b;
-  --text:#f7efea;
-  --muted:#e3c9b8;
-  --panel:#150303;
-  --border:#531616;
-  --radius:12px;
-}
+:root{--bg:#000;--primary:#f44b4b;--primary-soft:#ff6b6b;--text:#f7efea;--muted:#e3c9b8;--panel:#150303;--border:#531616;}
 
-*{box-sizing:border-box}
-html,body{
-  margin:0;font-family:Inter,system-ui;color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  background:#000 url('bg.jpg') no-repeat center bottom;
-  background-size:100% auto;
-}
+body{margin:0;font-family:Inter;color:var(--text);background:#000 url('bg.jpg') no-repeat center bottom;background-size:100% auto;-webkit-font-smoothing:antialiased;}
+.overlay{min-height:100vh;background:linear-gradient(to bottom,rgba(0,0,0,.95),rgba(0,0,0,.88) 40%,rgba(0,0,0,.75) 70%,rgba(0,0,0,.88));}
+main{width:min(800px,94%);margin:auto;padding:48px 0}
 
-.overlay{
-  min-height:100vh;
-  background:linear-gradient(to bottom,rgba(0,0,0,0.95),rgba(0,0,0,0.88) 40%,rgba(0,0,0,0.75) 70%,rgba(0,0,0,0.88));
-}
+.hero{display:flex;gap:18px}
+.mono{width:86px;height:86px;background:#2a0c0c;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:600;color:var(--primary-soft);}
+h1{margin:0;font-size:30px;color:var(--primary-soft);}
+.age{font-size:11px;color:var(--muted);margin-top:4px;}
 
-main{width:min(800px,94%);margin:auto;padding:48px 0 40px}
+.subtitle{font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;border-right:2px solid var(--primary-soft);width:0;animation:typing 2s steps(30,end) forwards,blink .9s infinite;}
+@keyframes typing{from{width:0}to{width:230px}} @keyframes blink{0%{border-color:transparent}50%{border-color:var(--primary-soft)}100%{border-color:transparent}}
 
-/* Header */
-.hero{display:flex;gap:18px;align-items:flex-start}
-.mono{
-  width:86px;height:86px;border-radius:10px;
-  background:#2a0c0c;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;font-weight:600;color:var(--primary-soft);
-  box-shadow:0 10px 30px rgba(0,0,0,0.8);
-}
+.quote{margin-top:8px;font-size:12px;color:var(--muted);opacity:0;transition:.4s;}
+.lead{margin-top:12px;font-size:13px;color:var(--muted);max-width:60ch;}
 
-h1{margin:0;font-size:30px;font-weight:600;color:var(--primary-soft)}
-.age{font-size:11px;color:var(--muted);margin-top:4px}
+.links{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;}
+.pill{padding:7px 10px;border-radius:999px;background:#240606;border:1px solid var(--border);font-size:13px;color:var(--muted);text-decoration:none;cursor:pointer;transition:.2s;}
+.pill:hover{color:var(--primary-soft);border-color:var(--primary-soft);box-shadow:0 0 10px rgba(255,70,70,.5)}
 
-.subtitle{
-  font-size:13px;color:var(--muted);margin-top:6px;
-  white-space:nowrap;overflow:hidden;border-right:2px solid var(--primary-soft);
-  width:0;animation:typing 2s steps(30,end) forwards,blink .9s infinite;
-}
-@keyframes typing{from{width:0}to{width:230px}}
-@keyframes blink{0%{border-color:transparent}50%{border-color:var(--primary-soft)}100%{border-color:transparent}}
+.tabs{margin-top:30px;display:flex;gap:10px;border-bottom:1px solid var(--border);}
+.tab-btn{padding:6px 12px;border-radius:999px;background:none;color:var(--muted);border:1px solid transparent;font-size:13px;}
+.tab-btn.active{background:#200505;border-color:var(--primary-soft);color:var(--primary-soft);font-weight:600}
+.section{margin-top:22px;} .hidden{display:none;}
 
-.lead{margin-top:12px;color:var(--muted);font-size:13px;max-width:60ch}
+.box{background:var(--panel);border:1px solid var(--border);padding:16px;border-radius:10px;margin-bottom:14px;box-shadow:0 10px 30px rgba(0,0,0,.6);}
+.box h3{margin:0 0 8px;color:var(--primary-soft);font-size:15px;}
+.box ul{list-style:none;margin:0;padding:0;}
+.box li{padding:8px 6px;border-bottom:1px solid #ffffff10;font-size:13px;}
 
-/* Quick links */
-.links{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
-.pill{
-  padding:7px 10px;border-radius:999px;background:#240606;
-  border:1px solid var(--border);font-size:13px;color:var(--muted);
-  text-decoration:none;transition:0.2s;cursor:pointer;
-}
-.pill:hover{color:var(--primary-soft);border-color:var(--primary-soft)}
+input,textarea,select{width:100%;padding:7px;border-radius:8px;border:1px solid var(--border);background:#0b0404;color:var(--text);font-size:13px;margin-top:4px;}
+button.action{padding:7px 10px;border-radius:8px;background:#150404;color:var(--primary-soft);border:1px solid var(--border);cursor:pointer;font-size:13px;margin-top:6px;}
+button.action:hover{border-color:var(--primary-soft);background:#2b0808;}
 
-/* Tabs */
-.tabs{margin-top:30px;display:flex;gap:10px;border-bottom:1px solid var(--border)}
-.tab-btn{
-  padding:6px 12px;border-radius:999px;background:none;color:var(--muted);
-  border:1px solid transparent;cursor:pointer;font-size:13px;
-}
-.tab-btn.active{
-  background:#200505;border-color:var(--primary-soft);color:var(--primary-soft);font-weight:600;
-}
+.entries{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+.entry{padding:10px;background:#0b0404;border:1px solid var(--border);border-radius:8px;font-size:13px;}
+.entry-meta{font-size:11px;color:var(--muted);}
+.entry button{margin-top:6px;border:1px solid var(--border);background:none;color:var(--muted);padding:3px 8px;border-radius:999px;font-size:11px;}
+.entry button:hover{color:#ff7d7d;border-color:#ff7d7d;}
 
-/* Sections */
-.section{margin-top:22px}
-.hidden{display:none}
+footer{text-align:center;margin-top:26px;font-size:12px;color:var(--muted);}
 
-/* Cards */
-.box{
-  background:var(--panel);border:1px solid var(--border);
-  padding:16px;border-radius:var(--radius);margin-bottom:14px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.6)
-}
-.box h3{margin:0 0 8px;font-size:15px;color:var(--primary-soft)}
-.box ul{margin:0;padding:0;list-style:none}
-.box li{padding:8px 6px;border-bottom:1px solid #ffffff12;font-size:13px}
-
-/* Input + tracker */
-input,textarea,select{
-  width:100%;padding:7px 8px;border-radius:8px;border:1px solid var(--border);
-  background:#0b0404;color:var(--text);font-size:13px;margin-top:4px
-}
-button.action{
-  padding:7px 10px;border-radius:8px;background:#150404;color:var(--primary-soft);
-  border:1px solid var(--border);cursor:pointer;font-size:13px;margin-top:6px
-}
-button.action:hover{border-color:var(--primary-soft);background:#2b0808}
-
-.entries{margin-top:10px;display:flex;flex-direction:column;gap:8px}
-.entry{
-  padding:10px;border:1px solid var(--border);
-  background:#0b0404;border-radius:8px;font-size:13px;
-}
-.entry-title{font-weight:600}
-.entry-meta{font-size:11px;color:var(--muted)}
-.entry-notes{margin-top:4px;font-size:12px}
-.entry button{
-  margin-top:6px;background:none;border:1px solid var(--border);
-  color:var(--muted);padding:3px 8px;border-radius:999px;font-size:11px;cursor:pointer
-}
-.entry button:hover{color:#ff7d7d;border-color:#ff7d7d}
-
-/* Footer */
-footer{text-align:center;margin-top:26px;color:var(--muted);font-size:12px}
+/* music toast */
+#musicToast{position:fixed;right:22px;bottom:22px;background:#240606;padding:10px 14px;border-radius:12px;border:1px solid var(--border);cursor:pointer;font-size:18px;box-shadow:0 0 12px rgba(255,70,70,.5);transition:.2s;z-index:999;}
+#musicToast:hover{transform:scale(1.08);box-shadow:0 0 18px rgba(255,100,100,.7);}
+#musicIcon{color:var(--primary-soft);font-weight:600;}
 </style>
 </head>
 
 <body>
 <div class="overlay"><main>
 
-<!-- background music -->
+<!-- MUSIC -->
 <audio id="bgMusic" src="music.mp3" loop></audio>
+<div id="musicToast"><span id="musicIcon">▶</span></div>
 
 <header class="hero">
-  <div class="mono">SJ</div>
-  <div>
-    <h1>SAJAL KHATRI</h1>
-    <div class="age">21</div>
-    <div class="subtitle">learning, building, improving</div>
-    <div class="lead">i study law and try to be better at ML and data science.</div>
+<div class="mono">SJ</div>
+<div>
+<h1>SAJAL KHATRI</h1>
+<div class="age">21</div>
+<div class="subtitle">learning, building, improving</div>
+<div id="quote" class="quote"></div>
+<div class="lead">i study law and try to be better at ML and data science.</div>
 
-    <div class="links">
-      <a class="pill" href="https://instagram.com/sajalkhattri" target="_blank">instagram</a>
-      <a class="pill" href="https://github.com/sajalkhatri" target="_blank">github</a>
-      <a class="pill" href="#" onclick="openTab('contact')">contact</a>
-
-      <!-- Music Controls -->
-      <button class="pill" id="playBtn">play music</button>
-      <button class="pill" id="pauseBtn">pause</button>
-    </div>
-  </div>
+<div class="links">
+<a class="pill" href="https://instagram.com/sajalkhatri" target="_blank">instagram</a>
+<a class="pill" href="https://github.com/sajalkhatri" target="_blank">github</a>
+<a class="pill" onclick="openTab('contact')">contact</a>
+</div>
+</div>
 </header>
 
 <div class="tabs">
-  <button class="tab-btn active" data-tab="overview">overview</button>
-  <button class="tab-btn" data-tab="learning">learning</button>
-  <button class="tab-btn" data-tab="projects">projects</button>
-  <button class="tab-btn" data-tab="contact">contact</button>
+<button class="tab-btn active" data-tab="overview">overview</button>
+<button class="tab-btn" data-tab="learning">learning</button>
+<button class="tab-btn" data-tab="projects">projects</button>
+<button class="tab-btn" data-tab="contact">contact</button>
 </div>
 
-<!-- overview -->
-<section id="tab-overview" class="section">
-  <div class="box">
-    <h3>interests</h3>
-    <ul>
-      <li>law</li>
-      <li>machine learning</li>
-      <li>data science</li>
-      <li>finance</li>
-    </ul>
-  </div>
-  <div class="box">
-    <h3>learning focus</h3>
-    <ul>
-      <li>statistics & linear algebra</li>
-      <li>law</li>
-      <li>project building</li>
-    </ul>
-  </div>
+<section id="tab-overview">
+<div class="box"><h3>interests</h3><ul>
+<li>law</li><li>machine learning</li><li>data science</li><li>finance</li>
+</ul></div>
+<div class="box"><h3>learning focus</h3><ul>
+<li>statistics & linear algebra</li><li>law</li><li>project building</li>
+</ul></div>
 </section>
 
-<!-- learning tracker -->
-<section id="tab-learning" class="section hidden">
-  <div class="box">
-    <h3>learning tracker</h3>
-    <label>What did you learn?</label>
-    <input id="learnTitle" placeholder="e.g. hypothesis testing">
-    <label>Notes</label>
-    <textarea id="learnNotes" rows="2" placeholder="resources / ideas"></textarea>
-    <label>Effort</label>
-    <select id="learnEffort">
-      <option value="3">high (3+ hrs)</option>
-      <option value="2">medium (1–3 hrs)</option>
-      <option value="1">low (&lt;1hr)</option>
-    </select>
-    <button class="action" onclick="addEntry()">Add</button>
-    <button class="action" onclick="clearEntries()">Clear</button>
-    <div id="entries" class="entries"></div>
-  </div>
+<section id="tab-learning" class="hidden">
+<div class="box"><h3>learning tracker</h3>
+<input id="learnTitle" placeholder="topic learned">
+<textarea id="learnNotes" rows="2" placeholder="notes/resources"></textarea>
+<select id="learnEffort"><option value="3">high</option><option value="2">medium</option><option value="1">low</option></select>
+<button class="action" onclick="addEntry()">Add</button>
+<button class="action" onclick="clearEntries()">Clear</button>
+<div id="entries" class="entries"></div>
+</div>
 </section>
 
-<!-- projects -->
-<section id="tab-projects" class="section hidden">
-  <div class="box">
-    <h3>projects</h3>
-    <ul>
-      <li><strong>Case Research Summaries</strong><br><span style="font-size:12px;color:var(--muted)"> reviews </span></li>
-      <li><strong>ML Model Practice</strong><br><span style="font-size:12px;color:var(--muted)"> </span></li>
-      <li><strong></strong><br><span style="font-size:12px;color:var(--muted)"> </span></li>
-    </ul>
-  </div>
+<section id="tab-projects" class="hidden">
+<div class="box"><h3>projects</h3><ul>
+<li>Case Research Summaries and reviews</li>
+<li>ML</li>
+<li> </li>
+</ul></div>
 </section>
 
-<!-- contact -->
-<section id="tab-contact" class="section hidden">
-  <div class="box">
-    <h3>contact me</h3>
-    <p>reach me via:</p>
-    <ul style="list-style:none;padding:0">
-      <li><a href="https://instagram.com/sajalkhattri" target="_blank">instagram dm</a></li>
-      <li><a href="https://www.linkedin.com/in/sajal-khatri-524a1821b/" target="_blank">linkedin</a></li>
-    </ul>
-    <p style="font-size:12px;color:var(--muted)">I respond fastest on instagram.</p>
-  </div>
+<section id="tab-contact" class="hidden">
+<div class="box"><h3>contact</h3>
+<ul>
+<li><a href="https://instagram.com/sajalkhatri">instagram</a></li>
+<li><a href="https://www.linkedin.com/in/sajal-khatri-524a1821b/">linkedin</a></li>
+</ul>
+</div>
 </section>
 
-<footer>  <code> </code>,  <code> </code> & <code> </code>  </footer>
+<footer> <code></code> + <code></code> </footer>
+</main></div>
 
 <script>
-// Tabs
-document.querySelectorAll(".tab-btn").forEach(btn=>{
-  btn.onclick=()=>{
-    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
-    document.getElementById("tab-"+btn.dataset.tab).classList.remove("hidden");
-  }
-});
-function openTab(tab){document.querySelector(`[data-tab=${tab}]`).click()}
+/* tabs */
+document.querySelectorAll(".tab-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));document.getElementById("tab-"+b.dataset.tab).classList.remove("hidden")});function openTab(t){document.querySelector(`[data-tab=${t}]`).click()}
 
-// Tracker
-let entries=JSON.parse(localStorage.getItem("sajalTrack")||"[]");
-const el=document.getElementById("entries");
+/* tracker */
+let entries=JSON.parse(localStorage.getItem("sajalTrack")||"[]"),out=document.getElementById("entries");
 function save(){localStorage.setItem("sajalTrack",JSON.stringify(entries));render()}
-function addEntry(){
-  let t=learnTitle.value.trim(); 
-  if(!t) return;
-  entries.unshift({t,n:learnNotes.value,e:learnEffort.value,date:new Date().toISOString().slice(0,10)});
-  learnTitle.value=""; learnNotes.value="";
-  save();
-}
-function clearEntries(){ if(confirm("Clear all?")){entries=[];save()} }
+function addEntry(){if(!learnTitle.value.trim())return;entries.unshift({t:learnTitle.value,n:learnNotes.value,e:learnEffort.value,date:new Date().toISOString().slice(0,10)});learnTitle.value="";learnNotes.value="";save()}
+function clearEntries(){if(confirm("clear all?")){entries=[];save()}}
 function delEntry(i){entries.splice(i,1);save()}
-function render(){
-  el.innerHTML="";
-  entries.forEach((x,i)=>{
-    el.innerHTML+=`<div class="entry">
-    <div class="entry-title">${x.t}</div>
-    <div class="entry-meta">${x.date} • effort:${x.e}</div>
-    ${x.n?`<div class="entry-notes">${x.n}</div>`:""}
-    <button onclick="delEntry(${i})">delete</button>
-    </div>`;
-  });
-}
-render();
+function render(){out.innerHTML="";entries.forEach((x,i)=>out.innerHTML+=`<div class="entry"><div>${x.t}</div><div class="entry-meta">${x.date} • ${x.e}</div>${x.n?`<div>${x.n}</div>`:""}<button onclick="delEntry(${i})">delete</button></div>`)}render()
 
-// Music Play/Pause
-const music=document.getElementById("bgMusic");
-document.getElementById("playBtn").onclick=()=>music.play();
-document.getElementById("pauseBtn").onclick=()=>music.pause();
+/* autoplay + toast */
+const music=document.getElementById("bgMusic"),toast=document.getElementById("musicToast"),icon=document.getElementById("musicIcon");
+music.volume=.7;music.muted=true;music.play().catch(()=>{});window.addEventListener("click",()=>{if(music.muted){music.muted=false;music.play();icon.textContent="❚❚"}},{once:true});
+toast.onclick=()=>{if(music.paused){music.play();icon.textContent="❚❚"}else{music.pause();icon.textContent="▶"}}
+
+/* rotating quotes */
+const quote=document.getElementById("quote"),q=[
+"Everyday it gets easier, but you have to do it everyday — that's the hard part"
+];
+let i=0;function next(){quote.style.opacity=0;setTimeout(()=>{quote.textContent=q[i];quote.style.opacity=1;i=(i+1)%q.length},200)}next();setInterval(next,6000)
 </script>
-</main></div>
 </body>
 </html>
